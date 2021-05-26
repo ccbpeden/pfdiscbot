@@ -1,5 +1,5 @@
-const { Client, Intents } = require( 'discord.js' );
-const dotenv = require( 'dotenv' );
+const { Client } = require( 'discord.js' );
+const dotenv = require( 'dotenv' ).config();
 const client = new Client();
 
 console.log( 'prawcess: ', process.env );
