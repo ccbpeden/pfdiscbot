@@ -19,7 +19,7 @@
 	},
 	"homepage": "https://github.com/ccbpeden/pfdiscbot#readme",
 	"dependencies": {
-		"discord": "^0.8.2",
+		"discord.js": "^12.5.3",
 		"dotenv": "8.2.0"
 	},
 	"devDependencies": {
