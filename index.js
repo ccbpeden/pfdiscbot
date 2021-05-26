@@ -13,8 +13,6 @@ try {
 		response.end();
 	} ).listen( process.env.port );
 	
-	console.log( 'prawcess: ', process.env );
-	
 	client.login( process.env.discordToken );
 	
 	client.on( 'ready', () => {
