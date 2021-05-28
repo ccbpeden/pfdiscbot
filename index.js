@@ -21,6 +21,11 @@ try {
 		console.log( 'We are prepared to meet our maker.' );
 	} );
 
+	client.on( 'message', async message => {
+		if ( message.content.includes( '!skill' ) ) {
+			return await getSkill();
+		}
+	} );
 
 } catch ( error ) {
 	console.log( 'error: ', error );
@@ -30,7 +35,5 @@ const getSkill = async () => {
 	const response = await fetch( 'https://aonprd.com/Skills.aspx?ItemName=Acrobatics' );
 	const text = await response.text();
 	const dom = new JSDOM( text );
-	console.log( dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent );
 	return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
-	
-}
+};
