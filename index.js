@@ -6,7 +6,7 @@ const fetch = require( 'isomorphic-fetch' );
 const { JSDOM } = require('jsdom');
 
 try {
-	http.createServer( ( request, response ) => {
+	http.createServer( async ( request, response ) => {
 		response.writeHead(
 			200,
 			{ 'Content-type': 'text/plain' }
