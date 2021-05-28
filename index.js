@@ -32,5 +32,6 @@ const getSkill = async () => {
 	const text = await response.text();
 	const dom = new JSDOM( text );
 	console.log( dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent );
+	return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
 	
 }
