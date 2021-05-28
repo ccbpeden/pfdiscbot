@@ -19,7 +19,6 @@ try {
 	
 	client.on( 'ready', async () => {
 		console.log( 'We are prepared to meet our maker.' );
-		await getSkill();
 	} );
 
 
