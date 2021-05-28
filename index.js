@@ -17,7 +17,7 @@ try {
 	
 	client.login( process.env.discordToken );
 	
-	client.on( 'ready', async () => {
+	client.on( 'ready', () => {
 		console.log( 'We are prepared to meet our maker.' );
 	} );
 
