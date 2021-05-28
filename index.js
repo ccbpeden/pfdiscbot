@@ -13,7 +13,7 @@ try {
 		);
 		response.write( 'Hello World...' );
 		response.end();
-	} ).listen( process.env.port );
+	} ).listen( process.env.PORT || process.env.port );
 	
 	client.login( process.env.discordToken );
 	
