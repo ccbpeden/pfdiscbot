@@ -20,7 +20,10 @@
 	"homepage": "https://github.com/ccbpeden/pfdiscbot#readme",
 	"dependencies": {
 		"discord.js": "^12.5.3",
-		"dotenv": "8.2.0"
+		"dotenv": "8.2.0",
+		"es6-promise": "^4.2.8",
+		"isomorphic-fetch": "^3.0.0",
+		"jsdom": "^16.6.0"
 	},
 	"devDependencies": {
 		"eslint": "5.16.0"
