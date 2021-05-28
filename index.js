@@ -22,10 +22,12 @@ try {
 	} );
 
 	client.on( 'message', async message => {
-		console.log( 'test message. ', message.content );
 		if ( message.content.includes( '!skill' ) ) {
-			console.log( 'includes!' );
-			return await getSkill();
+			let  skill = await getSkill();
+			if ( skill.length > 4000 ) {
+				skill = skill.slice( 0, 1750 );
+			}
+			message.reply( skill );
 		}
 	} );
 
