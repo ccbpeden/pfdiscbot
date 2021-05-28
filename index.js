@@ -22,6 +22,7 @@ try {
 	} );
 
 	client.on( 'message', async message => {
+		console.log( 'test message. ', message );
 		if ( message.content.includes( '!skill' ) ) {
 			return await getSkill();
 		}
