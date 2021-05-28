@@ -3,6 +3,7 @@ const { Client } = require( 'discord.js' );
 const client = new Client();
 const http = require( 'http' );
 const fetch = require( 'isomorphic-fetch' );
+const { JSDOM } = require('jsdom');
 
 try {
 	http.createServer( ( request, response ) => {
