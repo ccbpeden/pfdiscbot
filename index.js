@@ -22,8 +22,9 @@ try {
 	} );
 
 	client.on( 'message', async message => {
-		console.log( 'test message. ', message );
+		console.log( 'test message. ', message.content );
 		if ( message.content.includes( '!skill' ) ) {
+			console.log( 'includes!' );
 			return await getSkill();
 		}
 	} );
