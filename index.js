@@ -2,6 +2,7 @@ require( 'dotenv' ).config();
 const { Client } = require( 'discord.js' );
 const client = new Client();
 const http = require( 'http' );
+const fetch = require( 'isomorphic-fetch' );
 
 try {
 	http.createServer( ( request, response ) => {
