@@ -37,12 +37,15 @@ try {
 	console.log( 'error: ', error );
 }
 
-const getSkill = async ( message ) => {
-	const arg = getArg( message, '!skill' );
+const retrievePage = async ( message, queryType ) => {
+	const arg = getArg( message, queryType );
 	if ( !arg ) {
 		return false;
 	}
-	
+
+	const urlSegment = pargArgs[ queryType ];
+	console.log( 'urlSegment: ', urlSegment );
+
 	const page = await fetch( `https://aonprd.com/Skills.aspx?ItemName=${ arg }` );
 	if ( !page ) {
 		return false;
