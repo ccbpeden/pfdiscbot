@@ -22,6 +22,8 @@ try {
 	} );
 
 	client.on( 'message', async message => {
+
+		// search for skill
 		if ( message.content.includes( '!skill' ) ) {
 			let  skill = await getSkill();
 			if ( skill.length > 4000 ) {
