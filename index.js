@@ -77,15 +77,23 @@ const retrievePage = async ( message, queryType ) => {
 	}
 
 	const urlSegment = pageArgs[ queryType ];
-	console.log( 'urlSegment: ', urlSegment );
 
-	const page = await fetch( `https://aonprd.com/Skills.aspx?ItemName=${ arg }` );
+	const page = await fetch( `https://aonprd.com/${ urlSegment }.aspx?ItemName=${ arg }` );
 	if ( !page ) {
 		return false;
 	}
 	const text = await page.text();
+	if ( !text ) {
+		return false;
+	}
 	const dom = new JSDOM( text );
-	return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
+	if ( !dom ) {
+		return false;
+	}
+	if ( dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ) ) {
+		return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
+	}
+	return false;
 };
 
 /**
