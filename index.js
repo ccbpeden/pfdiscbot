@@ -50,6 +50,7 @@ try {
 			if ( skill.length > 4000 ) {
 				skill = skill.slice( 0, 1750 );
 			}
+
 			return message.reply( skill );
 		}
 
@@ -72,13 +73,16 @@ try {
  */
 const retrievePage = async ( message, queryType ) => {
 	const arg = getArg( message, queryType );
+
 	if ( !arg ) {
 		return false;
 	}
 
 	const urlSegment = pageArgs[ queryType ];
 
-	const page = await fetch( `https://aonprd.com/${ urlSegment }.aspx?ItemName=${ arg }` );
+	const url = `https://aonprd.com/${ urlSegment }.aspx?ItemName=${ arg }`;
+
+	const page = await fetch( url );
 	if ( !page ) {
 		return false;
 	}
