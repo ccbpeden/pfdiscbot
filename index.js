@@ -41,3 +41,6 @@ const getSkill = async () => {
 	const dom = new JSDOM( text );
 	return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
 };
+
+const queryError = 'Sorry, I can\'t match your query.';
+
