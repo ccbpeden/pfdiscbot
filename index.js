@@ -1,4 +1,5 @@
 require( 'dotenv' ).config();
+// imported packages
 const { Client } = require( 'discord.js' );
 const client = new Client();
 const http = require( 'http' );
@@ -8,6 +9,12 @@ const { JSDOM } = require( 'jsdom' );
 // utilities
 const { defaultQueryError, pageArgs } = require( './constants' );
 
+/**
+ * this is the main handler function
+ * currently it listens for a message,
+ * and tries to match said message with a page from
+ * the pathfinder srd online: https://aonprd.com/
+ */
 try {
 	http.createServer( async ( request, response ) => {
 		response.writeHead(
