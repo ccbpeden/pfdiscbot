@@ -5,6 +5,9 @@ const http = require( 'http' );
 const fetch = require( 'isomorphic-fetch' );
 const { JSDOM } = require( 'jsdom' );
 
+// utilities
+const { defaultQueryError, pageArgs } = require( './constants' );
+
 try {
 	http.createServer( async ( request, response ) => {
 		response.writeHead(
@@ -66,13 +69,6 @@ const retrievePage = async ( message, queryType ) => {
 	const text = await page.text();
 	const dom = new JSDOM( text );
 	return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
-};
-
-const defaultQueryError = 'Sorry, I can\'t match your query.';
-
-const pageArgs = {
-	'!skill': 'Skills',
-	'!feat': 'FeatDisplay',
 };
 
 const getArg = ( message, queryType ) => {
