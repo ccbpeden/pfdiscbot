@@ -25,12 +25,8 @@ try {
 
 		// search for skill
 		if ( message.content.includes( '!skill' ) ) {
-			const arg = getArg( message, '!skill' );
-			console.log( 'arg: ', arg );
-			if ( !arg ) {
-				message.reply( queryError );
-			}
-			let  skill = await retrievePage( arg, !skill );
+
+			let skill = await retrievePage( message, !skill );
 			if ( !skill ) {
 				message.reply( queryError );
 			}
