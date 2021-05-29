@@ -77,10 +77,16 @@ const pageArgs = {
 }
 
 const getArg = ( message, queryType ) => {
+	if ( !message || !queryType ) {
+		return false;
+	}
+	// see if the message contains the query
 	if ( message.indexOf( queryType === -1 ) ) {
 		return false;
 	}
+	// if it does, get everything after the query
 	let arg = message.content.slice( message.indexOf( queryType ) + 1 ).trim();
+	// and convert the first char to upper case
 	arg = arg.charAt( 0 ).toUpperCase() + arg.slice( 1 );
 	return arg;
 };
