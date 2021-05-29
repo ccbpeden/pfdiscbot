@@ -25,11 +25,25 @@ try {
 
 		// search for skill
 		if ( message.content.includes( '!skill' ) ) {
-			let  skill = await getSkill();
+			const arg = getArg( message, '!skill' );
+			console.log( 'arg: ', arg );
+			if ( !arg ) {
+				message.reply( queryError );
+			}
+			let  skill = await retrievePage( arg, !skill );
+			if ( !skill ) {
+				message.reply( queryError );
+			}
 			if ( skill.length > 4000 ) {
 				skill = skill.slice( 0, 1750 );
 			}
 			message.reply( skill );
+		}
+
+		if ( message.content.includes( '!feat' ) ) {
+			const arg = getArg( message, '!feat' ) {
+				
+			}
 		}
 	} );
 
