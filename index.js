@@ -71,6 +71,11 @@ const retrievePage = async ( message, queryType ) => {
 
 const queryError = 'Sorry, I can\'t match your query.';
 
+const pageArgs = {
+	'!skill':'Skills',
+	'!feat':'FeatDisplay',
+}
+
 const getArg = ( message, queryType ) => {
 	if ( message.indexOf( queryType === -1 ) ) {
 		return false;
