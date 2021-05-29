@@ -40,10 +40,9 @@ try {
 			message.reply( skill );
 		}
 
+		// search for feat
 		if ( message.content.includes( '!feat' ) ) {
-			const arg = getArg( message, '!feat' ) {
-				
-			}
+			const arg = getArg( message, '!feat' );
 		}
 	} );
 
