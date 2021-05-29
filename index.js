@@ -56,7 +56,19 @@ try {
 
 		// search for feat
 		if ( message.content.includes( '!feat' ) ) {
-			const arg = getArg( message, '!feat' );
+			let feat = await retrievePage( message.content, '!feat' );
+			if ( !feat ) {
+				return message.reply( defaultQueryError );
+			}
+			/**
+			 * @todo make the chopping up of long messages pretty
+			 * maybe multiple responses?
+			 */
+			if ( feat.length > 4000 ) {
+				feat = feat.slice( 0, 1750 );
+			}
+
+			return message.reply( feat );
 		}
 	} );
 
