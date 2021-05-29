@@ -41,7 +41,7 @@ try {
 
 			let skill = await retrievePage( message.content, '!skill' );
 			if ( !skill ) {
-				message.reply( defaultQueryError );
+				message.reply( defaultQueryError( message.content ) );
 			}
 			/**
 			 * @todo make the chopping up of long messages pretty
