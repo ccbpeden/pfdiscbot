@@ -28,7 +28,7 @@ try {
 
 			let skill = await retrievePage( message, !skill );
 			if ( !skill ) {
-				message.reply( queryError );
+				message.reply( defaultQueryError );
 			}
 			if ( skill.length > 4000 ) {
 				skill = skill.slice( 0, 1750 );
@@ -65,7 +65,7 @@ const retrievePage = async ( message, queryType ) => {
 	return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
 };
 
-const queryError = 'Sorry, I can\'t match your query.';
+const defaultQueryError = 'Sorry, I can\'t match your query.';
 
 const pageArgs = {
 	'!skill':'Skills',
