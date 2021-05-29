@@ -39,7 +39,7 @@ try {
 		// search for skill
 		if ( message.content.includes( '!skill' ) ) {
 
-			let skill = await retrievePage( message, '!skill' );
+			let skill = await retrievePage( message.content, '!skill' );
 			if ( !skill ) {
 				message.reply( defaultQueryError );
 			}
