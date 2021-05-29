@@ -41,7 +41,7 @@ try {
 
 			let skill = await retrievePage( message.content, '!skill' );
 			if ( !skill ) {
-				message.reply( defaultQueryError );
+				return message.reply( defaultQueryError );
 			}
 			/**
 			 * @todo make the chopping up of long messages pretty
@@ -50,7 +50,7 @@ try {
 			if ( skill.length > 4000 ) {
 				skill = skill.slice( 0, 1750 );
 			}
-			message.reply( skill );
+			return message.reply( skill );
 		}
 
 		// search for feat
