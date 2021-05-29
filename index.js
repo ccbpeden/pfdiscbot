@@ -89,10 +89,11 @@ const retrievePage = async ( message, queryType ) => {
 };
 
 /**
- * 
+ * attempts to construct a query parameter for the page to be scraped
+ *
  * @param { string } messageContent 
  * @param { string } queryType 
- * @returns 
+ * @returns { string }
  */
 const getArg = ( messageContent, queryType ) => {
 	if ( !messageContent || !queryType ) {
