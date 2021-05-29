@@ -35,12 +35,28 @@ try {
 	console.log( 'error: ', error );
 }
 
-const getSkill = async () => {
-	const response = await fetch( 'https://aonprd.com/Skills.aspx?ItemName=Acrobatics' );
-	const text = await response.text();
+const getSkill = async ( message ) => {
+	const arg = getArg( message, '!skill' );
+	if ( !arg ) {
+		return false;
+	}
+	
+	const page = await fetch( `https://aonprd.com/Skills.aspx?ItemName=${ arg }` );
+	if ( !page ) {
+		return false;
+	}
+	const text = await page.text();
 	const dom = new JSDOM( text );
 	return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
 };
 
 const queryError = 'Sorry, I can\'t match your query.';
 
+const getArg = ( message, queryType ) => {
+	if ( message.indexOf( queryType === -1 ) ) {
+		return false;
+	}
+	let arg = message.content.slice( message.indexOf( queryType ) + 1 ).trim();
+	arg = arg.charAt( 0 ).toUpperCase() + arg.slice( 1 );
+	return arg;
+};
