@@ -21,6 +21,9 @@ try {
 			200,
 			{ 'Content-type': 'text/plain' }
 		);
+		/**
+		 * @todo we should create a webpage for this bot, rather than a simple helloworld response
+		 */
 		response.write( 'Hello World...' );
 		response.end();
 	} ).listen( process.env.PORT || process.env.port );
