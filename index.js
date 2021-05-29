@@ -57,7 +57,7 @@ const retrievePage = async ( message, queryType ) => {
 		return false;
 	}
 
-	const urlSegment = pargArgs[ queryType ];
+	const urlSegment = pageArgs[ queryType ];
 	console.log( 'urlSegment: ', urlSegment );
 
 	const page = await fetch( `https://aonprd.com/Skills.aspx?ItemName=${ arg }` );
