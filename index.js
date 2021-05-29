@@ -88,18 +88,23 @@ const retrievePage = async ( message, queryType ) => {
 	return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
 };
 
-const getArg = ( message, queryType ) => {
-	if ( !message || !queryType ) {
+/**
+ * 
+ * @param { string } messageContent 
+ * @param { string } queryType 
+ * @returns 
+ */
+const getArg = ( messageContent, queryType ) => {
+	if ( !messageContent || !queryType ) {
 		return false;
 	}
-	console.log( 'message: ', message );
+
 	// see if the message contains the query
-	if ( message.indexOf( queryType ) === -1 ) {
+	if ( messageContent.indexOf( queryType ) === -1 ) {
 		return false;
 	}
 	// if it does, get everything after the query
-	let arg = message.content.slice( message.indexOf( queryType ) + 1 ).trim();
+	const arg = messageContent.slice( messageContent.indexOf( queryType ) + 1 + queryType.length ).trim();
 	// and convert the first char to upper case
-	arg = arg.charAt( 0 ).toUpperCase() + arg.slice( 1 );
-	return arg;
+	return arg.charAt( 0 ).toUpperCase() + arg.slice( 1 );
 };
