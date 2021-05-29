@@ -63,6 +63,13 @@ try {
 	console.log( 'error: ', error );
 }
 
+/**
+ * Attempts to retrieve a specific segment of a specific page on the pathfinder srd.
+ *
+ * @param { object } message https://discord.js.org/#/docs/main/stable/class/Message
+ * @param { string } queryType - the category of rule we're looking for.
+ * @returns { Promise<String|Boolean> }
+ */
 const retrievePage = async ( message, queryType ) => {
 	const arg = getArg( message, queryType );
 	if ( !arg ) {
