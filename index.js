@@ -85,8 +85,9 @@ const getArg = ( message, queryType ) => {
 	if ( !message || !queryType ) {
 		return false;
 	}
+	console.log( 'message: ', message );
 	// see if the message contains the query
-	if ( message.indexOf( queryType === -1 ) ) {
+	if ( message.indexOf( queryType ) === -1 ) {
 		return false;
 	}
 	// if it does, get everything after the query
