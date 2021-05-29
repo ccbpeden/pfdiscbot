@@ -30,6 +30,10 @@ try {
 			if ( !skill ) {
 				message.reply( defaultQueryError );
 			}
+			/**
+			 * @todo make the chopping up of long messages pretty
+			 * maybe multiple responses?
+			 */
 			if ( skill.length > 4000 ) {
 				skill = skill.slice( 0, 1750 );
 			}
