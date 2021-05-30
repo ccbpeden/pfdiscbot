@@ -90,7 +90,7 @@ const retrievePage = async ( message, queryType ) => {
 		return false;
 	}
 
-	const urlSegment = pageArgs[ queryType ];
+	const urlSegment = pageArgs[ queryType ].segment;
 
 	const url = `https://aonprd.com/${ urlSegment }.aspx?ItemName=${ arg }`;
 
@@ -106,8 +106,8 @@ const retrievePage = async ( message, queryType ) => {
 	if ( !dom ) {
 		return false;
 	}
-	if ( dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ) ) {
-		return dom.window.document.querySelector( '#ctl00_MainContent_DataListTalentsAll' ).textContent;
+	if ( dom.window.document.querySelector( pageArgs[ queryType ].selector ) ) {
+		return dom.window.document.querySelector( pageArgs[ queryType ].selector ).textContent;
 	}
 	return false;
 };
