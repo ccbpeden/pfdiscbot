@@ -7,6 +7,7 @@ module.exports = {
 		'!armor': { segment: 'EquipmentArmorDisplay.aspx?ItemName=', selector: '[id*="ctl00_MainContent_DataListTypes"]' },
 		'!ring': { segment: 'MagicRingsDisplay.aspx?FinalName=', selector: '[id*="ctl00_MainContent_DataListTypes"]' },
 		'!monster': { segment: 'MonsterDisplay.aspx?ItemName=', selector: '[id*="ctl00_MainContent_DataListFeats"]' },
+		'!magicweapon': { segment: 'MagicWeaponsDisplay.aspx?ItemName=', selector: '[id*="ctl00_MainContent_DataListTypes"]' },
 	},
 	wordsNotToCapitalize: [
 		'of',
