@@ -128,8 +128,14 @@ const getArg = ( messageContent, queryType ) => {
 	if ( messageContent.indexOf( queryType ) === -1 ) {
 		return false;
 	}
-	// if it does, get everything after the query
-	const arg = messageContent.slice( messageContent.indexOf( queryType ) + 1 + queryType.length ).trim();
-	// and convert the first char to upper case
-	return encodeURIComponent( arg.charAt( 0 ).toUpperCase() + arg.slice( 1 ) );
+	// if it does, get everything after the query type
+	const query = messageContent.slice( messageContent.indexOf( queryType ) + 1 + queryType.length ).trim();
+	const queryWords = query.split( ' ' );
+	// and convert the first char of each word to upper case
+	for ( let index = 0; index < queryWords.length; index++ ) {
+		const word = queryWords[ index ];
+		const capitalizedWord = word[ 0 ].toUpperCase() + word.substr( 1 );
+		queryWords[ index ] = capitalizedWord; 
+	}
+	return queryWords.join( ' ' );
 };
