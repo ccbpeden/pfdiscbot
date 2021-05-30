@@ -73,7 +73,7 @@ try {
  */
 const retrievePage = async ( message, queryType ) => {
 	const arg = getArg( message, queryType );
-
+	console.log( 'arg: ', arg );
 	if ( !arg ) {
 		return false;
 	}
@@ -81,7 +81,7 @@ const retrievePage = async ( message, queryType ) => {
 	const urlSegment = pageArgs[ queryType ].segment;
 
 	const url = `https://aonprd.com/${ urlSegment }.aspx?ItemName=${ arg }`;
-
+	console.log( 'url: ', url );
 	const page = await fetch( url );
 	if ( !page ) {
 		return false;
