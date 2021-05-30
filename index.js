@@ -94,6 +94,7 @@ const retrievePage = async ( message, queryType ) => {
 		return false;
 	}
 	if ( dom.window.document.querySelector( pageArgs[ queryType ].selector ) ) {
+		console.log( 'exists: ', dom.window.document.querySelector( pageArgs[ queryType ].selector ) );
 		return dom.window.document.querySelector( pageArgs[ queryType ].selector ).textContent;
 	}
 	return false;
