@@ -52,12 +52,10 @@ try {
 				 * maybe multiple responses?
 				 */
 				console.log( 'entry: ', entry.length )
-				let returnValue = entry.trim();
-				if ( returnValue.length > 1999 ) {
-					returnValue = returnValue.substr( 0, 1999 );
-					console.log( 'entry', entry.length );
-				}
 
+				const returnValue = entry.trim().substr( 0, 1999 );
+
+				console.log( 'returnValue: ', returnValue.length );
 				return message.reply( returnValue );
 			}
 		}
