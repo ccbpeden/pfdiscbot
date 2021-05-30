@@ -43,7 +43,7 @@ try {
 			// search for skill
 			if ( message.content.includes( key ) ) {
 
-				let entry = await retrievePage( message.content, key ).trim();
+				const entry = await retrievePage( message.content, key );
 				if ( !entry ) {
 					return message.reply( defaultQueryError );
 				}
@@ -52,8 +52,8 @@ try {
 				 * maybe multiple responses?
 				 */
 				console.log( 'entry: ', entry.length )
-				let returnValue = entry;
-				if ( entry.length > 1999 ) {
+				let returnValue = entry.trim();
+				if ( returnValue > 1999 ) {
 					returnValue = entry.slice( 0, 1999 );
 					console.log( 'entry', entry.length );
 				}
