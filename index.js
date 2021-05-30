@@ -51,11 +51,9 @@ try {
 				 * @todo make the chopping up of long messages pretty
 				 * maybe multiple responses?
 				 */
-				console.log( 'entry: ', entry.length )
 
 				const returnValue = entry.trim().substr( 0, 1800 );
 
-				console.log( 'returnValue: ', returnValue.length );
 				return message.reply( returnValue );
 			}
 		}
