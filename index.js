@@ -43,7 +43,7 @@ try {
 			// search for skill
 			if ( message.content.includes( key ) ) {
 
-				let entry = await retrievePage( message.content, key );
+				let entry = await retrievePage( message.content, key ).trim();
 				if ( !entry ) {
 					return message.reply( defaultQueryError );
 				}
@@ -52,12 +52,13 @@ try {
 				 * maybe multiple responses?
 				 */
 				console.log( 'entry: ', entry.length )
-				if ( entry.length > 4000 ) {
-					entry = entry.slice( 0, 1750 ).trim();
-					console.log( 'entry', entry.length )
+				let returnValue = entry;
+				if ( entry.length > 1999 ) {
+					returnValue = entry.slice( 0, 1999 );
+					console.log( 'entry', entry.length );
 				}
 
-				return message.reply( entry );
+				return message.reply( returnValue );
 			}
 		}
 	} );
