@@ -72,7 +72,7 @@ try {
  * @returns { Promise<String|Boolean> }
  */
 const retrievePage = async ( message, queryType ) => {
-	const arg = getArg( message, queryType );
+	const arg = encodeURIComponent( getArg( message, queryType ) );
 	console.log( 'arg: ', arg );
 	if ( !arg ) {
 		return false;
