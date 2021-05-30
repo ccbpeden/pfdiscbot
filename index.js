@@ -54,7 +54,7 @@ try {
 				console.log( 'entry: ', entry.length )
 				let returnValue = entry.trim();
 				if ( returnValue.length > 1999 ) {
-					returnValue = entry.slice( 0, 1999 );
+					returnValue = returnValue.substr( 0, 1999 );
 					console.log( 'entry', entry.length );
 				}
 
