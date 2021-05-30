@@ -53,6 +53,7 @@ try {
 				 */
 				if ( entry.length > 4000 ) {
 					entry = entry.slice( 0, 1750 ).trim();
+					console.log( 'entry', entry.length )
 				}
 
 				return message.reply( entry );
