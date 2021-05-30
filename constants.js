@@ -1,7 +1,7 @@
 module.exports = {
 	defaultQueryError: 'Sorry, I can\'t match your query.',
 	pageArgs: {
-		'!skill': 'Skills',
-		'!feat': 'FeatDisplay',
+		'!skill': { segment: 'Skills', selector: '#ctl00_MainContent_DataListTalentsAll' },
+		'!feat': { segment: 'FeatDisplay', selector: '' },
 	},
 };
