@@ -51,6 +51,7 @@ try {
 				 * @todo make the chopping up of long messages pretty
 				 * maybe multiple responses?
 				 */
+				console.log( 'entry: ', entry.length )
 				if ( entry.length > 4000 ) {
 					entry = entry.slice( 0, 1750 ).trim();
 					console.log( 'entry', entry.length )
