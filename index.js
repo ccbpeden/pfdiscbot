@@ -138,6 +138,9 @@ const getArg = ( messageContent, queryType ) => {
 	// and convert the first char of each word to upper case
 	for ( let index = 0; index < queryWords.length; index++ ) {
 		const word = queryWords[ index ];
+		if ( wordsNotToCapitalize.includes( word ) ) {
+			continue;
+		}
 		const capitalizedWord = word[ 0 ].toUpperCase() + word.substr( 1 );
 		queryWords[ index ] = capitalizedWord; 
 	}
