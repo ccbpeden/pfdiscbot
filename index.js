@@ -7,7 +7,11 @@ const fetch = require( 'isomorphic-fetch' );
 const { JSDOM } = require( 'jsdom' );
 
 // utilities
-const { defaultQueryError, pageArgs } = require( './constants' );
+const {
+	defaultQueryError,
+	pageArgs,
+	wordsNotToCapitalize,
+} = require( './constants' );
 
 /**
  * this is the main handler function
