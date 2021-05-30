@@ -131,5 +131,5 @@ const getArg = ( messageContent, queryType ) => {
 	// if it does, get everything after the query
 	const arg = messageContent.slice( messageContent.indexOf( queryType ) + 1 + queryType.length ).trim();
 	// and convert the first char to upper case
-	return arg.charAt( 0 ).toUpperCase() + arg.slice( 1 );
+	return encodeURIComponent( arg.charAt( 0 ).toUpperCase() + arg.slice( 1 ) );
 };
