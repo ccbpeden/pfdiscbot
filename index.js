@@ -39,40 +39,24 @@ try {
 	} );
 
 	client.on( 'message', async message => {
+		for ( const [ key ] of Object.entries( pageArgs ) ) {
+			// search for skill
+			if ( message.content.includes( key ) ) {
 
-		// search for skill
-		if ( message.content.includes( '!skill' ) ) {
+				let entry = await retrievePage( message.content, key );
+				if ( !entry ) {
+					return message.reply( defaultQueryError );
+				}
+				/**
+				 * @todo make the chopping up of long messages pretty
+				 * maybe multiple responses?
+				 */
+				if ( entry.length > 4000 ) {
+					entry = entry.slice( 0, 1750 );
+				}
 
-			let skill = await retrievePage( message.content, '!skill' );
-			if ( !skill ) {
-				return message.reply( defaultQueryError );
+				return message.reply( entry );
 			}
-			/**
-			 * @todo make the chopping up of long messages pretty
-			 * maybe multiple responses?
-			 */
-			if ( skill.length > 4000 ) {
-				skill = skill.slice( 0, 1750 );
-			}
-
-			return message.reply( skill );
-		}
-
-		// search for feat
-		if ( message.content.includes( '!feat' ) ) {
-			let feat = await retrievePage( message.content, '!feat' );
-			if ( !feat ) {
-				return message.reply( defaultQueryError );
-			}
-			/**
-			 * @todo make the chopping up of long messages pretty
-			 * maybe multiple responses?
-			 */
-			if ( feat.length > 4000 ) {
-				feat = feat.slice( 0, 1750 );
-			}
-
-			return message.reply( feat );
 		}
 	} );
 
