@@ -53,7 +53,7 @@ try {
 				 */
 				console.log( 'entry: ', entry.length )
 
-				const returnValue = entry.trim().substr( 0, 1999 );
+				const returnValue = entry.trim().substr( 0, 1800 );
 
 				console.log( 'returnValue: ', returnValue.length );
 				return message.reply( returnValue );
