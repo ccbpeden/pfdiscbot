@@ -52,7 +52,7 @@ try {
 				 * maybe multiple responses?
 				 */
 				if ( entry.length > 4000 ) {
-					entry = entry.slice( 0, 1750 );
+					entry = entry.slice( 0, 1750 ).trim();
 				}
 
 				return message.reply( entry );
