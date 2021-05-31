@@ -82,21 +82,28 @@ const retrievePage = async ( message, queryType ) => {
 	const url = `https://aonprd.com/${ urlSegment }${ arg }`;
 	console.log( 'url: ', url );
 	const page = await fetch( url );
+	console.log( 'page:', page );
 	if ( !page ) {
 		return false;
 	}
 	const text = await page.text();
+	console.log( 'text: ', text );
 	if ( !text ) {
 		return false;
 	}
 	const dom = new JSDOM( text );
+	console.log( 'dom: ', dom );
 	if ( !dom ) {
 		return false;
 	}
-	if ( dom.window.document.querySelector( pageArgs[ queryType ].selector ) ) {
-		console.log( 'exists: ', dom.window.document.querySelector( pageArgs[ queryType ].selector ) );
+	if ( dom.window.document.querySelector( pageArgs[ queryType ].selector.textContent ) ) {
+		console.log(
+			'query selector succeeds: ',
+			dom.window.document.querySelector( pageArgs[ queryType ].selector.textContent )
+		);
 		return dom.window.document.querySelector( pageArgs[ queryType ].selector ).textContent;
 	}
+	console.log( 'query selector returns nothing.' );
 	return false;
 };
 
