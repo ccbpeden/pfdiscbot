@@ -11,8 +11,9 @@ module.exports = {
 		'!ring': { baseUrl: firstEditionBaseUrl, segment: 'MagicRingsDisplay.aspx?FinalName=', selector: '[id*="ctl00_MainContent_DataListTypes"]' },
 		'!monster': { baseUrl: firstEditionBaseUrl, segment: 'MonsterDisplay.aspx?ItemName=', selector: '[id*="ctl00_MainContent_DataListFeats"]' },
 		'!magicweapon': { baseUrl: firstEditionBaseUrl, segment: 'MagicWeaponsDisplay.aspx?ItemName=', selector: '[id*="ctl00_MainContent_DataListTypes"]' },
-		'!condition': { baseUrl: secondEditionBaseUrl, segment: 'Conditions.aspx', selector: '#ctl00_MainContent_DetailedOutput', postProcessing: true },
+		'!condition': { baseUrl: secondEditionBaseUrl, segment: 'Conditions.aspx', selector: '#ctl00_MainContent_DetailedOutput' },
 	},
+	commandsWithSpecialProcessing: [ '!condition' ],
 	wordsNotToCapitalize: [
 		'of',
 		'the',

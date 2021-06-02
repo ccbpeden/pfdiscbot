@@ -71,7 +71,8 @@ try {
  * @returns { Promise<String|Boolean> }
  */
 const retrievePage = async ( message, queryType ) => {
-	const arg = encodeURIComponent( getArg( message, queryType ) );
+	const processedArg = getArg( message, queryType );
+	const arg = encodeURIComponent( processedArg );
 	console.log( 'arg: ', arg );
 	if ( !arg ) {
 		return false;
@@ -110,7 +111,9 @@ const retrievePage = async ( message, queryType ) => {
 			'query selector succeeds: ',
 			textContent
 		);
-
+		if ( commandsWithSpecialProcessing.includes( queryType ) ) {
+			return processSpecialCommands( queryType, domSlice, processedArg );
+		}
 		return textContent;
 	}
 	console.log( 'query selector returns nothing.' );
