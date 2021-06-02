@@ -141,7 +141,7 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 
 			// pattern checks that the segment starts with the condition specific link
 			const pattern = `/^<a href="Conditions\.aspx\?ID=\d+">${ conditionToSearch }/`;
-			const segments = domSlice.outerHtml.split( '<h2 class="title">' ); // split html by condition title tags
+			const segments = domSlice.outerHTML.split( '<h2 class="title">' ); // split html by condition title tags
 			let condition;
 
 			for ( const segment of segments ) {
