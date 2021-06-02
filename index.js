@@ -11,6 +11,7 @@ const {
 	defaultQueryError,
 	pageArgs,
 	wordsNotToCapitalize,
+	commandsWithSpecialProcessing,
 } = require( './constants' );
 
 /**
