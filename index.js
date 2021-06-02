@@ -133,19 +133,14 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 	let text;
 	switch ( queryType ) {
 		case '!condition':
-			// pattern checks that the segment starts with the condition specific link
-			const pattern = `/^<a href="Conditions\.aspx\?ID=\d+">${ processedArg }/`;
 			const segments = domSlice.outerHTML.split( '<h2 class="title">' ); // split html by condition title tags
 			let condition;
 
 			for ( const segment of segments ) {
-				const match = segment.match(
-					pattern
-				);
-				// console.log( segment )
-				console.log( match );
+				const toSearch = `">${ processedArg }</a></h2><b>`;
+				const match = segment.includes( toSearch );
+
 				if ( match ) {
-					console.log( segment );
 					condition = segment;
 				}
 			}
@@ -153,8 +148,8 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 			if ( !condition ) {
 				return false;
 			}
-
-			text = new JSDOM( '<div>' + condition + '</div>' ).textContent; // strip out the html tags
+			// strip out the html tags 
+			text = condition.replace( /<(.|\n)*?>/g, '' );// https://stackoverflow.com/a/31516100/10312372
 			break;
 		default:
 			console.log( 'Custom queryType selector has no handler.' );
