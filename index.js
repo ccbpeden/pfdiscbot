@@ -96,12 +96,17 @@ const retrievePage = async ( message, queryType ) => {
 	if ( !dom ) {
 		return false;
 	}
-	if ( dom.window.document.querySelector( pageArgs[ queryType ].selector.textContent ) ) {
+
+	const domSlice = dom.window.document.querySelector( pageArgs[ queryType ].selector );
+	const textContent = domSlice.textContent;
+
+	if ( textContent ) {
 		console.log(
 			'query selector succeeds: ',
-			dom.window.document.querySelector( pageArgs[ queryType ].selector.textContent )
+			textContent
 		);
-		return dom.window.document.querySelector( pageArgs[ queryType ].selector ).textContent;
+
+		return textContent;
 	}
 	console.log( 'query selector returns nothing.' );
 	return false;
