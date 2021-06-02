@@ -122,6 +122,56 @@ const retrievePage = async ( message, queryType ) => {
 };
 
 /**
+ * Performs command specific processing on special commands.
+ *
+ * @param { string } queryType 
+ * @param { string } domSlice 
+ * @param { string } processedArg 
+ * @returns { string }
+ */
+const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
+	let text;
+	switch ( queryType ) {
+		case '!condition':
+			const conditionToSearch = processedArg.split( ' ' )[ 0 ];
+			console.log( 'conditionToSearch' )
+			console.log( conditionToSearch )
+			console.log( 'processedArg' )
+			console.log( processedArg )
+
+			// pattern checks that the segment starts with the condition specific link
+			const pattern = `/^<a href="Conditions\.aspx\?ID=\d+">${ conditionToSearch }/`;
+			const segments = domSlice.outerHtml.split( '<h2 class="title">' ); // split html by condition title tags
+			let condition;
+
+			for ( const segment of segments ) {
+				const match = segment.match(
+					pattern
+				);
+				// console.log( segment )
+				console.log( match );
+				if ( match ) {
+					console.log( segment );
+					condition = segment;
+				}
+			}
+
+			if ( !condition ) {
+				return false;
+			}
+
+			text = new JSDOM( '<div>' + condition + '</div>' ).textContent; // strip out the html tags
+			break;
+		default:
+			console.log( 'Custom queryType selector has no handler.' );
+			return false;
+	}
+	console.log( 'text' );
+	console.log( text );
+	return text;
+};
+
+/**
  * attempts to construct a query parameter for the page to be scraped
  *
  * @param { string } messageContent 
