@@ -83,7 +83,7 @@ const retrievePage = async ( message, queryType ) => {
 	const urlSegment = pageArgs[ queryType ].segment;
 
 	let url = baseUrl + urlSegment;
-	if ( urlSegment.test( /\?.*=$/)) { // matches "?***=" at the end of a string. Where * is any character
+	if ( /\?.*=$/.test( urlSegment ) ) { // matches "?***=" at the end of a string. Where * is any character
 		// Only add the arg if the url is formatted to expect additional parameters
 		url += arg;
 	}
