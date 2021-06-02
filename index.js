@@ -77,9 +77,14 @@ const retrievePage = async ( message, queryType ) => {
 		return false;
 	}
 
+	const baseUrl = pageArgs[ queryType ].baseUrl;
 	const urlSegment = pageArgs[ queryType ].segment;
 
-	const url = `https://aonprd.com/${ urlSegment }${ arg }`;
+	let url = baseUrl + urlSegment;
+	if ( urlSegment.test( /\?.*=$/)) { // matches "?***=" at the end of a string. Where * is any character
+		// Only add the arg if the url is formatted to expect additional parameters
+		url += arg;
+	}
 	console.log( 'url: ', url );
 	const page = await fetch( url );
 	console.log( 'page:', page );
