@@ -79,7 +79,7 @@ const retrievePage = async ( message, queryType ) => {
 		return false;
 	}
 
-	const baseUrl = pageArgs[ queryType ].baseUrl;
+	const baseUrl = 'https://www.aonprd.com/';
 	const urlSegment = pageArgs[ queryType ].segment;
 
 	let url = baseUrl + urlSegment;
