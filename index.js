@@ -161,6 +161,19 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 };
 
 /**
+ * What it says
+ *
+ * @param { string } document - some html?
+ * @returns { string } no more html
+ */
+const stripHTML = ( document ) => {
+	if ( !document ) {
+		return false;
+	}
+	return document.replace( /<(.|\n)*?>/g, '' ); // https://stackoverflow.com/a/31516100/10312372
+};
+
+/**
  * attempts to construct a query parameter for the page to be scraped
  *
  * @param { string } messageContent 
