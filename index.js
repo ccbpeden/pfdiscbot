@@ -149,7 +149,7 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 				return false;
 			}
 			// strip out the html tags 
-			text = condition.replace( /<(.|\n)*?>/g, '' );// https://stackoverflow.com/a/31516100/10312372
+			text = stripHTML( condition );
 			break;
 		default:
 			console.log( 'Custom queryType selector has no handler.' );
