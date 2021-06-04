@@ -143,6 +143,7 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 
 				if ( match ) {
 					condition = segment;
+					break;
 				}
 			}
 
