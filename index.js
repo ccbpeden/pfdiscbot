@@ -113,6 +113,7 @@ const retrievePage = async ( message, queryType ) => {
 			textContent
 		);
 		if ( commandsWithSpecialProcessing.includes( queryType ) ) {
+			console.log( 'special processing for ', queryType );
 			return processSpecialCommands( queryType, domSlice, processedArg );
 		}
 		return textContent;
