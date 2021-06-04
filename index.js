@@ -133,11 +133,11 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 	let text;
 	switch ( queryType ) {
 		case '!condition':
-			const segments = domSlice.outerHTML.split( '<h2 class="title">' ); // split html by condition title tags
+			const segments = domSlice.outerHTML.split( '<b>' ); // split html by condition title tags
 			let condition;
 
 			for ( const segment of segments ) {
-				const toSearch = `">${ processedArg }</a></h2><b>`;
+				const toSearch = `${ processedArg }<b>`;
 				const match = segment.includes( toSearch );
 
 				if ( match ) {
