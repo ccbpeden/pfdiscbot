@@ -138,7 +138,7 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 			let condition;
 
 			for ( const segment of segments ) {
-				const toSearch = `${ processedArg }<b>`;
+				const toSearch = `${ processedArg }</b>`;
 				const match = segment.includes( toSearch );
 
 				if ( match ) {
