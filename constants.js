@@ -8,7 +8,7 @@ module.exports = {
 		'!ring': { segment: 'MagicRingsDisplay.aspx?FinalName=', selector: '[id*="ctl00_MainContent_DataListTypes"]' },
 		'!monster': { segment: 'MonsterDisplay.aspx?ItemName=', selector: '[id*="ctl00_MainContent_DataListFeats"]' },
 		'!magicweapon': { segment: 'MagicWeaponsDisplay.aspx?ItemName=', selector: '[id*="ctl00_MainContent_DataListTypes"]' },
-		'!condition': { segment: 'Conditions.aspx', selector: '#ctl00_MainContent_DetailedOutput' },
+		'!condition': { segment: 'Rules.aspx?Name=Conditions&Category=Combat', selector: '#ctl00_MainContent_RulesResult' },
 	},
 	commandsWithSpecialProcessing: [ '!condition' ],
 	wordsNotToCapitalize: [
