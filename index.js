@@ -183,10 +183,11 @@ const stripHTML = ( document ) => {
  * attempts to construct a query parameter for the page to be scraped
  *
  * @param { string } messageContent 
- * @param { string } queryType 
+ * @param { string } queryType
+ * @param { string } hasVerboseFlag
  * @returns { string }
  */
-const getArg = ( messageContent, queryType ) => {
+const getArg = ( messageContent, queryType, hasVerboseFlag ) => {
 	if ( !messageContent || !queryType ) {
 		return false;
 	}
@@ -196,7 +197,10 @@ const getArg = ( messageContent, queryType ) => {
 		return false;
 	}
 	// if it does, get everything after the query type
-	const query = messageContent.slice( messageContent.indexOf( queryType ) + 1 + queryType.length ).trim();
+	let query = messageContent.slice( messageContent.indexOf( queryType ) + 1 + queryType.length ).trim();
+	if ( hasVerboseFlag ) { // we assume the flag is at the end
+		query = query.slice( 0, query.indexOf( '--v' ) ).trim();
+	}
 	const queryWords = query.split( ' ' );
 	// and convert the first char of each word to upper case
 	for ( let index = 0; index < queryWords.length; index++ ) {
