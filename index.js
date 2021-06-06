@@ -134,7 +134,7 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 	let text;
 	switch ( queryType ) {
 		case '!condition':
-			const segments = domSlice.outerHTML.split( '<b>' ); // split html by condition title tags
+			const segments = domSlice.outerHTML.split( '<br><br>' ); // split html by break tags
 			let condition;
 
 			for ( const segment of segments ) {
