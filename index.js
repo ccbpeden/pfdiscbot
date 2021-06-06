@@ -121,7 +121,7 @@ const retrievePage = async ( message, queryType ) => {
 			console.log( 'special processing for ', queryType );
 			return processSpecialCommands( queryType, domSlice, processedArg );
 		}
-		return textContent;
+		return stripHTML( textContent );
 	}
 	console.log( 'query selector returns nothing.' );
 	return false;
@@ -181,7 +181,12 @@ const stripHTML = ( document ) => {
 	if ( !document ) {
 		return false;
 	}
+	const turndownService = new turndown();
+	const wrapped = '\n ' + turndownService.turndown( document );
+	return wrapped;
+
 	return document.replace( /<(.|\n)*?>/g, '' ); // https://stackoverflow.com/a/31516100/10312372
+	
 };
 
 /**
