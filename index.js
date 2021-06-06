@@ -5,6 +5,7 @@ const client = new Client();
 const http = require( 'http' );
 const fetch = require( 'isomorphic-fetch' );
 const { JSDOM } = require( 'jsdom' );
+const turndown = require( 'turndown' );
 
 // utilities
 const {
