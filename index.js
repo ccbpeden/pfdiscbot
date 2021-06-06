@@ -89,6 +89,9 @@ const retrievePage = async ( message, queryType ) => {
 		url += arg;
 	}
 	console.log( 'url: ', url );
+	if ( url && !hasVerboseFlag ) {
+		return url;
+	}
 	const page = await fetch( url );
 	console.log( 'page:', page );
 	if ( !page ) {
