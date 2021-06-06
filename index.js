@@ -134,15 +134,18 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 	let text;
 	switch ( queryType ) {
 		case '!condition':
-			const segments = domSlice.outerHTML.split( '<b>' ); // split html by condition title tags
+			const segments = domSlice.outerHTML.split( '<br><br>' ); // split html by condition title tags
 			let condition;
 
-			for ( const segment of segments ) {
+			for ( const [ index, segment ] of segments.entries() ) {
 				const toSearch = `${ processedArg }</b>`;
 				const match = segment.includes( toSearch );
 
 				if ( match ) {
 					condition = segment;
+					if ( condition && processedArg === 'Confused' ) {
+						condition = condition.concat( segments[ index + 1 ] );
+					}
 					break;
 				}
 			}
