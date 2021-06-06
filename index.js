@@ -72,7 +72,8 @@ try {
  * @returns { Promise<String|Boolean> }
  */
 const retrievePage = async ( message, queryType ) => {
-	const processedArg = getArg( message, queryType );
+	const hasVerboseFlag = message.indexOf( '--v' ) !== -1;
+	const processedArg = getArg( message, queryType, hasVerboseFlag );
 	const arg = encodeURIComponent( processedArg );
 	console.log( 'arg: ', arg );
 	if ( !arg ) {
