@@ -110,18 +110,14 @@ const retrievePage = async ( message, queryType ) => {
 	}
 
 	const domSlice = dom.window.document.querySelector( pageArgs[ queryType ].selector );
-	const textContent = domSlice.textContent;
 
-	if ( textContent ) {
-		console.log(
-			'query selector succeeds: ',
-			textContent
-		);
+	if ( domSlice ) {
+		console.log( 'query selector succeeds: ' );
 		if ( commandsWithSpecialProcessing.includes( queryType ) ) {
 			console.log( 'special processing for ', queryType );
 			return processSpecialCommands( queryType, domSlice, processedArg );
 		}
-		return stripHTML( textContent );
+		return convertToMarkdown( domSlice );
 	}
 	console.log( 'query selector returns nothing.' );
 	return false;
@@ -160,7 +156,7 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 				return false;
 			}
 			// strip out the html tags 
-			text = stripHTML( condition );
+			text = convertToMarkdown( condition );
 			break;
 		default:
 			console.log( 'Custom queryType selector has no handler.' );
