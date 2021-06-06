@@ -141,8 +141,9 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
 			const segments = domSlice.outerHTML.split( '<br><br>' ); // split html by condition title tags
 			let condition;
 
+			const toSearch = `<b>${ processedArg }</b>`;
+
 			for ( const [ index, segment ] of segments.entries() ) {
-				const toSearch = `${ processedArg }</b>`;
 				const match = segment.includes( toSearch );
 
 				if ( match ) {
