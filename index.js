@@ -175,18 +175,17 @@ const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
  * What it says
  *
  * @param { string } document - some html?
- * @returns { string } no more html
+ * @returns { string } html - markdownified
  */
-const stripHTML = ( document ) => {
+const convertToMarkdown = ( document ) => {
+
 	if ( !document ) {
 		return false;
 	}
-	const turndownService = new turndown();
-	const wrapped = '\n ' + turndownService.turndown( document );
-	return wrapped;
 
-	return document.replace( /<(.|\n)*?>/g, '' ); // https://stackoverflow.com/a/31516100/10312372
-	
+	const turndownService = new turndown();
+	// https://github.com/domchristie/turndown
+	return '\n ' + turndownService.turndown( document );
 };
 
 /**
