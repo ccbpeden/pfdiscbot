@@ -11,6 +11,7 @@ const {
 	defaultQueryError,
 	pageArgs,
 	wordsNotToCapitalize,
+	commandsWithSpecialProcessing,
 } = require( './constants' );
 
 /**
@@ -71,15 +72,21 @@ try {
  * @returns { Promise<String|Boolean> }
  */
 const retrievePage = async ( message, queryType ) => {
-	const arg = encodeURIComponent( getArg( message, queryType ) );
+	const processedArg = getArg( message, queryType );
+	const arg = encodeURIComponent( processedArg );
 	console.log( 'arg: ', arg );
 	if ( !arg ) {
 		return false;
 	}
 
+	const baseUrl = pageArgs[ queryType ].baseUrl;
 	const urlSegment = pageArgs[ queryType ].segment;
 
-	const url = `https://aonprd.com/${ urlSegment }${ arg }`;
+	let url = baseUrl + urlSegment;
+	if ( /\?.*=$/.test( urlSegment ) ) { // matches "?***=" at the end of a string. Where * is any character
+		// Only add the arg if the url is formatted to expect additional parameters
+		url += arg;
+	}
 	console.log( 'url: ', url );
 	const page = await fetch( url );
 	console.log( 'page:', page );
@@ -96,15 +103,61 @@ const retrievePage = async ( message, queryType ) => {
 	if ( !dom ) {
 		return false;
 	}
-	if ( dom.window.document.querySelector( pageArgs[ queryType ].selector.textContent ) ) {
+
+	const domSlice = dom.window.document.querySelector( pageArgs[ queryType ].selector );
+	const textContent = domSlice.textContent;
+
+	if ( textContent ) {
 		console.log(
 			'query selector succeeds: ',
-			dom.window.document.querySelector( pageArgs[ queryType ].selector.textContent )
+			textContent
 		);
-		return dom.window.document.querySelector( pageArgs[ queryType ].selector ).textContent;
+		if ( commandsWithSpecialProcessing.includes( queryType ) ) {
+			return processSpecialCommands( queryType, domSlice, processedArg );
+		}
+		return textContent;
 	}
 	console.log( 'query selector returns nothing.' );
 	return false;
+};
+
+/**
+ * Performs command specific processing on special commands.
+ *
+ * @param { string } queryType 
+ * @param { string } domSlice 
+ * @param { string } processedArg 
+ * @returns { string }
+ */
+const processSpecialCommands = ( queryType, domSlice, processedArg ) => {
+	let text;
+	switch ( queryType ) {
+		case '!condition':
+			const segments = domSlice.outerHTML.split( '<h2 class="title">' ); // split html by condition title tags
+			let condition;
+
+			for ( const segment of segments ) {
+				const toSearch = `">${ processedArg }</a></h2><b>`;
+				const match = segment.includes( toSearch );
+
+				if ( match ) {
+					condition = segment;
+				}
+			}
+
+			if ( !condition ) {
+				return false;
+			}
+			// strip out the html tags 
+			text = condition.replace( /<(.|\n)*?>/g, '' );// https://stackoverflow.com/a/31516100/10312372
+			break;
+		default:
+			console.log( 'Custom queryType selector has no handler.' );
+			return false;
+	}
+	console.log( 'text' );
+	console.log( text );
+	return text;
 };
 
 /**
