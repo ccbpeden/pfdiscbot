@@ -18,6 +18,7 @@ module.exports = {
 			segment: 'Rules.aspx?Name=Conditions&Category=Combat',
 			selector: '#ctl00_MainContent_RulesResult',
 		},
+		'!weapon': { segment: 'EquipmentWeaponsDisplay.aspx?ItemName=', selector: '[id*="ctl00_MainContent_DataListTypes"]' },
 	},
 	commandsWithSpecialProcessing: [ '!condition' ],
 	wordsNotToCapitalize: [
